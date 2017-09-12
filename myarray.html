@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	// 自定义一个数组
+		let arr = new myArray(1,2,3,4);
+		console.log(arr);
+		arr.push(5,6,7);
+		alert(arr.indexof('b'));
+		alert(arr.some(function(value){
+			return  value>4;
+		}));
+		alert(arr.every(function(value){
+			return typeof value==Number;
+		}));
+		alert(arr.map(function(value){
+			return value*2;
+		}));
+		alert(arr.filter(function(value){
+			return value>4;
+		}));
+		console.log(arr.revers(function(arr1,...rest){
+			for(var i=0;i<rest.length;i++){
+				arr1[arr1.length]=rest[i];
+			}
+		}));
+		arr.sort('>');
+		arr.join('+');
+		arr.air()
+		alert(arr.includes(4));
+		function myArray(){
+			for(let i=0;i<arguments.length;i++){
+				this[i]=arguments[i];
+			}
+			this.length=arguments.length;
+			this.push = function(){
+				for(let i=0;i<arguments.length;i++){
+					this[this.length]=arguments[i];
+					this.length++;
+				}
+			}
+			// indexof	首次位置	找见返回来，找不见返回-1
+			this.indexof = function(value){
+				for(let i=0;i<this.length;i++){
+					if(value==this[i]){
+						return i;
+					}
+				}
+				return -1;
+			}
+			// lastindexof  最后出现的位置
+			this.lastindexof =function(value){
+				for(let i=this.length-1;i>-1;i--){
+					if(this[i]==value){
+						return i;
+					}
+				}
+				return -1;
+			}
+			// 判断有没有符合条件的:some
+			this.some = function(fn){
+				for(let i=0;i<this.length;i++){
+					if(fn(this[i])){
+						return true;
+					}
+				}
+				return false;
+			}
+			// 判断是否全部符合条件:every
+			this.every = function(fn){
+				for(let i=0;i<this.length;i++){
+					if(!fn(this[i])){
+						return false;
+					}
+				}
+				return true;
+			}
+			// 回调函数：map
+			this.map = function(fn){
+				let newarr=[];
+				for(let i=0;i<this.length;i++){
+					newarr[newarr.length]=fn(this[i]);
+				}
+				return newarr;
+			}
+			// 回调函数：filter
+			this.filter = function(fn){
+				let newarr =[];
+				for(let i=0;i<this.length;i++){
+					if(fn(this[i])){
+						newarr[newarr.length]=this[i];
+					}
+				}
+				return newarr;
+			}
+			// 翻转：revers
+			this.revers = function(fn){
+				let newarr = [];
+				for(i=this.length-1;i>-1;i--){
+					newarr[newarr.length]=this[i]
+				}
+				return newarr;
+			}
+			// 万能排序：sort
+			this.sort = function(type){
+				type = type==undefined ? '>' :type;
+				if(type=='<'){
+					for(let i=0;i<this.length;i++){
+						for(let j=i+1;j<this.length;j++){
+							if(this[i]<this[j]){
+								let a=this[i];
+								this[i]=this[j];
+								this[j]=a;
+							}
+						}
+					}
+					console.log(this);
+				}
+				if(type=='>'){
+					for(let i=0;i<this.length;i++){
+						for(let j=i+1;j<this.length;j++){
+							if(this[i]>this[j]){
+								let a=this[i];
+								this[i]=this[j];
+								this[j]=a;
+							}
+						}
+					}
+					console.log(this);
+				}
+			}
+			// 数组中的元素连接：join
+			this.join = function(str){
+				str = str == undefined ? '+' : str; 
+				let num = '';
+				for(let i=0;i<this.length;i++){
+					if(i<this.length-1){
+						num += this[i]+str;
+					}else{
+						num += this[i];
+					}
+				}
+				console.log(num)
+			}
+			// 去空：air
+			this.air = function(){
+				let newarr = [];
+				for(let i=0;i<this.length;i++){
+					if((typeof this[i]) !='undefined'){
+						newarr[newarr.length]=this[i];
+					}
+				}
+				console.log(newarr);
+			}
+			this.includes = function(value){
+				for(let i=0;i<this.length;i++){
+					if(this[i]==value){
+						return true;
+					}
+				}
+				return false;
+			}
+		}
+
+
+		/*indexof	lastindexof		includes	revers	join	sort	
+		some	every	map   filter*/
+	</script>
+</body>
+</html>

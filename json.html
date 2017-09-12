@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		let zhangsan = {
+			"name" : 'zhangsan',
+			"age" :18,
+			"sex" :'nan',
+			"lover" : 'lisi',
+			say : function(){
+				alert('你好，我是张三')
+			}
+		}
+		console.log(zhangsan);
+		zhangsan.say();
+		alert(zhangsan.constructor);//返回它的构造函数
+		let tangsan = {
+			"name" :'张威',
+			"Pseudonym" :'唐家三少',
+			"age" : 36,
+			"zuopin" : '绝世唐门',
+			"nationality" : 'China'
+		}
+		console.log(tangsan);
+		// alert(tangsan.constructor);
+		// class 创建类
+		class proson{
+			constructor(){
+				this.name = 'hao';
+				this.age = 18;
+				this.sex = 'nv';
+			}
+			study(){
+				alert('学习')
+			}
+			say(){
+				alert('大气')
+			}
+		}
+		let haohao = new proson;
+		console.log(haohao);
+		haohao.study();
+		haohao.say();
+	</script>
+</body>
+</html>
